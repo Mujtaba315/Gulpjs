@@ -1,0 +1,22 @@
+// import scss files (for Vendors)
+@import 'vendors/aos';
+// @import 'vendors/isotope';
+
+// import scss files (for Global)
+@import 'global/fonts';
+@import 'global/variables';
+@import 'global/mixins';
+@import 'global/global';
+@import 'global/typography';
+@import 'global/button';
+
+// import scss files (for Components)
+@import 'components/landing';
+
+// home page
+@import 'components/home_landing.scss';
+@import 'components/home_header.scss';
+@import 'components/home_sidebar.scss';
+
+// porfolio page
+@import 'components/portfolio_header.scss';
