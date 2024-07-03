@@ -94,10 +94,53 @@ function serviceSlider () {
   const swiper = new Swiper('.swiper', {
     // Optional parameters
     // direction: 'vertical',
-    // loop: true,
-  
-    slidesPerView: 3,
+
+    slidesPerView: 4,
+    //slidesPerGroup: 4,
+    //freeMode: true,
+    spaceBetween: 47.5,
+    loop: true,
+    keyboard: {
+      enabled: true,
+    },
+    // pagination: {
+    //   el: ".swiper-pagination",
+    //   //clickable: true,
+    //   type: "fraction",
+    // },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+
+    // custom pagination
+    on: {
+      slideChange: function () {
+        var index_currentSlide = this.realIndex + 1;
+        //console.log(index_currentSlide); 
+
+        $('.portfolio-services .current-slide-js').html(index_currentSlide);
+      },
+    },
+
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+      },
+      601: {
+        slidesPerView: 2,
+        spaceBetween: 50,
+      },
+      991: {
+        slidesPerView: 4,
+        spaceBetween: 47.5,
+      },
+    },
   });
+
+  const total_slides = ($('.portfolio-services .swiper-slide')).length;
+  //console.log(total_slides);
+  $('.portfolio-services .total-slide-js').html(total_slides);
 }
 
 function dataTrim() {
