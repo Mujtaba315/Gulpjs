@@ -51,6 +51,8 @@ $(document).ready(function () {
   
   openCloseHomeSidebar();
 
+  openClosePortfolioSidebar();
+
   showcaseIsotopes();
 
   serviceSlider ();
@@ -69,6 +71,22 @@ function openCloseHomeSidebar () {
   });
 }
 
+// open / close portfolio sidebar
+
+function openClosePortfolioSidebar () {
+  $('.portfolio-header .left-content i').click(function(){
+    $('.portfolio-sidebar').toggleClass('open');
+  });
+
+  $(document).on('load', $(window).bind("resize", checkPosition));
+  function checkPosition()
+  {
+      if ($(window).width() > 600){
+          $('.portfolio-sidebar').removeClass('open');
+      }
+  }
+  
+}
 
 // showcase isotopes
 
@@ -85,6 +103,14 @@ function showcaseIsotopes() {
   $('.portfolio-showcase .filter-button-group').on('click', 'button', function(){
     var filterValue = $(this).attr('data-filter');
     $grid.isotope({ filter: filterValue });
+
+    // Changing number (It has _ items)
+    var numItem = $('.portfolio-showcase ' + filterValue).length;
+    $('.portfolio-showcase .num-of-items .num').html(numItem);
+    var category_name = $(this).html().toLowerCase();
+    var first_letter = category_name[0].toUpperCase();
+    var title_name = category_name.replace(category_name[0], first_letter);
+    $('.portfolio-showcase .num-of-items .name').html(title_name);
   });
 }
 
