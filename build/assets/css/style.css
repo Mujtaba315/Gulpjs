@@ -1616,6 +1616,10 @@ h5.white,
   margin-top: 1.5rem;
 }
 
+.p-btn:hover {
+  background-color: #d8d8d8;
+}
+
 @media (max-width:600px) {
   .p-btn {
     font-size: 0.7rem;
@@ -2357,10 +2361,10 @@ h5.white,
   font-size: 0.64rem;
   font-weight: bold;
 }
-.portfolio-sidebar .items .item:focus {
+.portfolio-sidebar .items .item.active {
   background-color: #221F20;
 }
-.portfolio-sidebar .items .item:focus a {
+.portfolio-sidebar .items .item.active a {
   color: #ffffff;
 }
 
