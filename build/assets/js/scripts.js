@@ -43,6 +43,9 @@ $(document).ready(function () {
   // animateWords();
 
   openCloseHomeSidebar();
+  openClosePortfolioSidebar();
+  showcaseIsotopes();
+  serviceSlider();
   dataTrim();
   ChangeToSvg();
   formValidation();
@@ -54,6 +57,103 @@ function openCloseHomeSidebar() {
   $('.home-header .hamburger i').click(function () {
     $('.home-sidebar').toggleClass('open');
   });
+}
+
+// open / close portfolio sidebar
+
+function openClosePortfolioSidebar() {
+  $('.portfolio-header .left-content i').click(function () {
+    $('.portfolio-sidebar').toggleClass('open');
+  });
+  $(document).on('load', $(window).bind("resize", checkPosition));
+  function checkPosition() {
+    if ($(window).width() > 600) {
+      $('.portfolio-sidebar').removeClass('open');
+    }
+  }
+}
+
+// showcase isotopes
+
+function showcaseIsotopes() {
+  // init Isotope
+  var $grid = $('.portfolio-showcase .grid').isotope({
+    itemSelector: '.element-item',
+    layoutMode: 'fitRows'
+  });
+  $grid.isotope({
+    filter: '.landscape'
+  });
+  $('.portfolio-showcase .filter-button-group').on('click', 'button', function () {
+    var filterValue = $(this).attr('data-filter');
+    $grid.isotope({
+      filter: filterValue
+    });
+
+    // Changing number (It has _ items)
+    var numItem = $('.portfolio-showcase ' + filterValue).length;
+    $('.portfolio-showcase .num-of-items .num').html(numItem);
+    var category_name = $(this).html().toLowerCase();
+    var first_letter = category_name[0].toUpperCase();
+    var title_name = category_name.replace(category_name[0], first_letter);
+    $('.portfolio-showcase .num-of-items .name').html(title_name);
+
+    //Adding active btn affect
+    $('.portfolio-showcase .btns button').removeClass('active');
+    $(this).addClass('active');
+  });
+}
+
+// services slider
+
+function serviceSlider() {
+  var swiper = new Swiper('.swiper', {
+    // Optional parameters
+    // direction: 'vertical',
+
+    slidesPerView: 4,
+    //slidesPerGroup: 4,
+    //freeMode: true,
+    spaceBetween: 47.5,
+    loop: true,
+    keyboard: {
+      enabled: true
+    },
+    // pagination: {
+    //   el: ".swiper-pagination",
+    //   //clickable: true,
+    //   type: "fraction",
+    // },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev"
+    },
+    // custom pagination
+    on: {
+      slideChange: function slideChange() {
+        var index_currentSlide = this.realIndex + 1;
+        //console.log(index_currentSlide); 
+
+        $('.portfolio-services .current-slide-js').html(index_currentSlide);
+      }
+    },
+    breakpoints: {
+      0: {
+        slidesPerView: 1
+      },
+      601: {
+        slidesPerView: 2,
+        spaceBetween: 50
+      },
+      991: {
+        slidesPerView: 4,
+        spaceBetween: 47.5
+      }
+    }
+  });
+  var total_slides = $('.portfolio-services .swiper-slide').length;
+  //console.log(total_slides);
+  $('.portfolio-services .total-slide-js').html(total_slides);
 }
 function dataTrim() {
   var ellipsis = "...";
