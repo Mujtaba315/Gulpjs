@@ -81,6 +81,22 @@ function openClosePortfolioSidebar() {
 // showcase isotopes
 
 function showcaseIsotopes() {
+  // changing name to default active
+  var category_name = $('.portfolio-showcase .btns .active').html().toLowerCase();
+  var first_letter = category_name[0].toUpperCase();
+  var title_name = category_name.replace(category_name[0], first_letter);
+  $('.portfolio-showcase .num-of-items .name').html(title_name);
+
+  // changing number to default active
+  var filterValue = $('.portfolio-showcase .btns .active').attr('data-filter');
+  var numItem = $('.portfolio-showcase ' + filterValue).length;
+  $('.portfolio-showcase .num-of-items .num').html(numItem);
+  if (numItem < 2) {
+    $('.portfolio-showcase .num-of-items .itms').html('item');
+  } else {
+    $('.portfolio-showcase .num-of-items .itms').html('items');
+  }
+
   // init Isotope
   var $grid = $('.portfolio-showcase .grid').isotope({
     itemSelector: '.element-item',
@@ -98,6 +114,8 @@ function showcaseIsotopes() {
     // Changing number (It has _ items)
     var numItem = $('.portfolio-showcase ' + filterValue).length;
     $('.portfolio-showcase .num-of-items .num').html(numItem);
+
+    // changing category name
     var category_name = $(this).html().toLowerCase();
     var first_letter = category_name[0].toUpperCase();
     var title_name = category_name.replace(category_name[0], first_letter);
